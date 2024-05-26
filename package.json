@@ -1,5 +1,6 @@
 {
-  "name": "robos",
+  "name": "robots",
+  "homepage": "https://MadanMohanw95.github.io/robots",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
