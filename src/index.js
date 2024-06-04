@@ -4,13 +4,17 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
 import App from './containers/App';
-import { configureStore } from '@reduxjs/toolkit'
-import { searchRobots } from './reducers';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { createLogger } from 'redux-logger';
+import {thunk} from 'redux-thunk';
+import { searchRobots, requestRobots } from './reducers';
 
+const logger = createLogger();
+const rootReducer = combineReducers({searchRobots, requestRobots});
 const store = configureStore({
-  reducer: {
-    robots: searchRobots,
-  }
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(thunk, logger),
 })
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
